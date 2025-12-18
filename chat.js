@@ -1,4 +1,4 @@
-// Replace this with your actual Wit.ai token
+// REPLACE THIS WITH YOUR ACTUAL WIT.AI TOKEN
 const WIT_AI_TOKEN = 'YOUR_WIT_AI_TOKEN_HERE';
 
 const chatMessages = document.getElementById('chatMessages');
@@ -17,7 +17,7 @@ function addMessage(text, isUser = false) {
   messageDiv.appendChild(bubble);
   chatMessages.appendChild(messageDiv);
   
-  // Scroll to bottom
+  // Auto scroll to bottom
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
@@ -53,14 +53,17 @@ function processWitResponse(witData, userMessage) {
     return "Sorry, I'm having trouble understanding right now. Please try again.";
   }
 
+  // Extract intents
   const intents = witData.intents || [];
   const entities = witData.entities || {};
 
+  // Check if we have any intents
   if (intents.length > 0) {
     const topIntent = intents[0];
     const intentName = topIntent.name;
     const confidence = topIntent.confidence;
 
+    // Customize responses based on intents
     if (confidence > 0.7) {
       switch (intentName) {
         case 'greeting':
@@ -83,44 +86,56 @@ function processWitResponse(witData, userMessage) {
     }
   }
 
+  // No intents detected
   return `You said: "${userMessage}". I'm still learning! Try training me in Wit.ai.`;
 }
 
 // Handle send button click
 async function handleSend() {
   const message = userInput.value.trim();
+  
   if (!message) return;
-
+  
+  // Check if token is set
   if (WIT_AI_TOKEN === 'YOUR_WIT_AI_TOKEN_HERE') {
     addMessage('⚠️ Please set your Wit.ai token in the code! Edit the WIT_AI_TOKEN variable.', false);
     userInput.value = '';
     return;
   }
 
+  // Add user message
   addMessage(message, true);
   userInput.value = '';
-
-  // Disable button
+  
+  // Disable send button
   sendBtn.disabled = true;
   sendBtn.textContent = 'Thinking...';
 
+  // Send to Wit.ai
   const witResponse = await sendToWitAi(message);
+  
+  // Process and display response
   const botReply = processWitResponse(witResponse, message);
   addMessage(botReply, false);
 
-  // Re-enable button
+  // Re-enable send button
   sendBtn.disabled = false;
   sendBtn.textContent = 'Send';
   userInput.focus();
 }
 
-// Event Listeners
+// Event listeners
 sendBtn.addEventListener('click', handleSend);
+
 userInput.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') handleSend();
+  if (e.key === 'Enter') {
+    handleSend();
+  }
 });
 
 // Focus input on load
 userInput.focus();
 
-console.log('✅ Chatbot loaded! Remember to set your Wit.ai token.');
+// Log to console
+console.log('✅ Chatbot loaded successfully!');
+console.log('⚠️ Remember to replace YOUR_WIT_AI_TOKEN_HERE with your actual Wit.ai token');
