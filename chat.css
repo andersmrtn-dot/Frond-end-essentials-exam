@@ -1,0 +1,48 @@
+/* Reset and box sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body with background image */
+body {
+  font-family: 'Arimo', sans-serif;
+  /* Replace the URL with your image path or URL */
+  background-image: url('HeaderImage.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Chat container styling */
+.chat-header {
+  background-image: url('HeaderImage.png'); /* your image path */
+  background-size: cover;        /* fills the header */
+  background-position: center;   /* centers the image */
+  background-repeat: no-repeat;
+
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ... rest of your styles remain unchanged ... */
+
+.chat-header {
+  background: #f7f1de;;
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ... rest of your styles ... */
+ 
