@@ -99,3 +99,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
+// Google maps 
+// function initMap() {
+//    const location = { lat: 60.3037219, lng: 10.635755 };
+//    const map = new google.maps.Map(document.getElementById("map"), {
+//      zoom: 12,
+//      center: location,
+//    });
+//    const marker = new google.maps.Marker({ position: location, map: map });
